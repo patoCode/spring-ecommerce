@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "3447ef9d-9c43-4cd9-af4b-34b8106eb411",
+		"name": "E-COMMERCE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PRODUCT",
+			"item": [
+				{
+					"name": "PRODUCTS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mochilla Husky II\",\r\n    \"description\": \"Mochilla para trabajo color rojo para hombre\",\r\n    \"imageUrl\": \"https://image.png\",\r\n    \"price\": 310.85,\r\n    \"stock\": 39,\r\n    \"active\": true,\r\n    \"category\": {\r\n        \"id\": \"6e8d7398-bb18-458d-9ded-86bd6d4ad587\",\r\n        \"name\": \"WORK\",\r\n        \"description\": \"Mochillas para el trabajo\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ecom_url}}products/1aab9d7c-1780-4db4-9451-004c64f2ffbd",
+							"host": [
+								"{{ecom_url}}products"
+							],
+							"path": [
+								"1aab9d7c-1780-4db4-9451-004c64f2ffbd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PRODUCTS > BY_CATEGORY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"product_id\", response.id)\r",
+									"console.log(pm.collectionVariables.get(\"product_id\"))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sort",
+								"value": "DESC",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ecom_url}}products/category/6e8d7398-bb18-458d-9ded-86bd6d4ad587?page=0&size=20",
+							"host": [
+								"{{ecom_url}}products"
+							],
+							"path": [
+								"category",
+								"6e8d7398-bb18-458d-9ded-86bd6d4ad587"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PRODUCTS Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"product_id\", response.id)\r",
+									"console.log(pm.collectionVariables.get(\"product_id\"))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ecom_url}}products/1aab9d7c-1780-4db4-9451-da4c64f2ffbd",
+							"host": [
+								"{{ecom_url}}products"
+							],
+							"path": [
+								"1aab9d7c-1780-4db4-9451-da4c64f2ffbd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ecom_url",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "product_id",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
