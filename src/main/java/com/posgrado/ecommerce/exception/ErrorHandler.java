@@ -4,6 +4,8 @@ import com.posgrado.ecommerce.exception.response.ErrorResponse;
 import com.posgrado.ecommerce.exception.response.FieldErrorModel;
 import com.posgrado.ecommerce.exception.response.ValidationErrorResponse;
 import java.util.List;
+
+import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -73,7 +75,7 @@ public class ErrorHandler {
     HttpStatus status = HttpStatus.CONFLICT;
     ErrorResponse error = ErrorResponse.builder()
             .code(status.value())
-            .error(status.name())
+            .error("Role Name Already Exists")
             .message(ex.getMessage())
             .build();
     return ResponseEntity.status(status).body(error);
