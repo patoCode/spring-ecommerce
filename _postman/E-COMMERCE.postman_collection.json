@@ -136,6 +136,48 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "ROLE",
+			"item": [
+				{
+					"name": "ROL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ecom_url}}roles",
+							"host": [
+								"{{ecom_url}}roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ROL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"name\": \"ADMIN II\",\r\n        \"description\": \"Role admin II\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ecom_url}}roles",
+							"host": [
+								"{{ecom_url}}roles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
