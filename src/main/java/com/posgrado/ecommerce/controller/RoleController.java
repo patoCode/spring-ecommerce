@@ -3,6 +3,7 @@ package com.posgrado.ecommerce.controller;
 import com.posgrado.ecommerce.dto.ProductDto;
 import com.posgrado.ecommerce.dto.RoleDto;
 import com.posgrado.ecommerce.entity.Role;
+import com.posgrado.ecommerce.exception.RoleNameAlreadyExists;
 import com.posgrado.ecommerce.service.RoleService;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -35,9 +36,13 @@ public class RoleController {
   Create an endpoint to save a new role
 */
   @PostMapping
-  public ResponseEntity<Role> create(@RequestBody RoleDto dto){
-
-    return null;
+  public ResponseEntity create(@RequestBody RoleDto dto){
+    boolean existName = roleService.existName(dto.getName());
+    if ( existName ) {
+      throw new RoleNameAlreadyExists(dto.getName());
+    }
+    Role _role = roleService.create(dto);
+    return ResponseEntity.status(HttpStatus.CREATED).body(_role);
   }
 
 }

@@ -68,5 +68,16 @@ public class ErrorHandler {
     return ResponseEntity.status(status).body(response);
   }
 
+  @ExceptionHandler(RoleNameAlreadyExists.class)
+  public ResponseEntity<ErrorResponse> handleRoleNameAlreadyTaken(Exception ex) {
+    HttpStatus status = HttpStatus.CONFLICT;
+    ErrorResponse error = ErrorResponse.builder()
+            .code(status.value())
+            .error(status.name())
+            .message(ex.getMessage())
+            .build();
+    return ResponseEntity.status(status).body(error);
+  }
+
 
 }
