@@ -1,2 +1,3 @@
-# backpack-ecommerce
- Curso SpringBoot
+# Spirng-Basic-Course
+* E-Commerce
+* Denis Rodriguez Mendoza
